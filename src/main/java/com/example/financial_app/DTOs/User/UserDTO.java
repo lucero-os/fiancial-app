@@ -1,24 +1,24 @@
 package com.example.financial_app.DTOs.User;
 
+import java.io.Serializable;
 import java.util.Set;
 
-import com.example.financial_app.DTOs.NotificationDTO;
+import com.example.financial_app.DTOs.Notification.NotificationDTO;
 
-public class UserDTO {
+public class UserDTO implements Serializable{
     private Long id;
     private String name;
     private String surname;
     private String mail;
-    private String password;
     Set<NotificationDTO> notifications;
+    // Set<SubscriptionDTO> subscriptions;
 
     public UserDTO(){}
     
-    public UserDTO(String name, String surname, String mail, String password, Set<NotificationDTO> notifications) {
+    public UserDTO(String name, String surname, String mail, Set<NotificationDTO> notifications) {
         this.name = name;
         this.surname = surname;
         this.mail = mail;
-        this.password = password;
         this.notifications = notifications;
     }
     public Long getId() {
@@ -44,12 +44,6 @@ public class UserDTO {
     }
     public void setMail(String mail) {
         this.mail = mail;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
     public Set<NotificationDTO> getNotifications() {
         return notifications;
