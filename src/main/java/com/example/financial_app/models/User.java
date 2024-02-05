@@ -7,16 +7,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-
-    public User(Long id, String name, String surname, String mail, String password, Set<Notification> subscriptions) {
-        this.setId(id);
-        this.setName(name);
-        this.setSurname(surname);
-        this.setMail(mail);
-        this.setPassword(password);
-        this.setSubscriptions(subscriptions);
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,11 +24,15 @@ public class User {
     )
     private Set<Notification> notifications;
 
+    public User(String name, String surname, String mail, String password) {
+        this.setName(name);
+        this.setSurname(surname);
+        this.setMail(mail);
+        this.setPassword(password);
+    }
+
     public Long getId() {
         return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
     }
     public String getName() {
         return name;
@@ -64,10 +58,13 @@ public class User {
     private void setPassword(String password) {
         this.password = password;
     }
-    public Set<Notification> getNotification() {
+    public Set<Notification> getNotifications() {
         return notifications;
     }
-    private void setSubscriptions(Set<Notification> notifications) {
-        if(notifications.size() > 0) this.notifications = notifications;
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", mail=" + mail + ", password="
+                + password + ", notifications=" + notifications + "]";
     }
 }
