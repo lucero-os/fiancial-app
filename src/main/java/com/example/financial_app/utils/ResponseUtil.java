@@ -1,11 +1,13 @@
 package com.example.financial_app.utils;
 
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ResponseUtil{
 
-    public static <T> ResponseEntity<ApiResponse<T>> success(T data) {
+    public static <T> ResponseEntity<ApiResponse<T>> success(Map<String, Object> data) {
         ApiResponse<T> response = new ApiResponse<>(HttpStatus.OK.value(), "Success", data);
         return ResponseEntity.ok(response);
     }
@@ -18,9 +20,9 @@ public class ResponseUtil{
     public static class ApiResponse<T> {
         private final int status;
         private final String message;
-        private final T data;
+        private final Map<String, Object> data;
 
-        public ApiResponse(int status, String message, T data) {
+        public ApiResponse(int status, String message, Map<String, Object> data) {
             this.status = status;
             this.message = message;
             this.data = data;
@@ -34,7 +36,7 @@ public class ResponseUtil{
             return message;
         }
 
-        public T getData() {
+        public Map<String, Object> getData() {
             return data;
         }
     }
