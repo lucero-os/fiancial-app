@@ -1,11 +1,19 @@
 package com.example.financial_app.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
+@NamedEntityGraph(
+    name = "user-with-details",
+    attributeNodes = {
+        @NamedAttributeNode(value = "notifications"),
+        @NamedAttributeNode(value = "subscriptions")
+    }
+)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +24,7 @@ public class User {
     private String mail;
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "user_notifications",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -24,11 +32,23 @@ public class User {
     )
     private Set<Notification> notifications;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "user_subscriptions",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "subscription_id")
+    )
+    private Set<Subscription> subscriptions;
+
+    public User() {}
+
     public User(String name, String surname, String mail, String password) {
         this.setName(name);
         this.setSurname(surname);
         this.setMail(mail);
         this.setPassword(password);
+        this.setNotifications();
+        this.setSubscriptions();
     }
 
     public Long getId() {
@@ -61,7 +81,15 @@ public class User {
     public Set<Notification> getNotifications() {
         return notifications;
     }
-
+    private void setNotifications() {
+        this.notifications = new HashSet<>();
+    }
+    public Set<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+    private void setSubscriptions() {
+        this.subscriptions = new HashSet<>();
+    }
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", mail=" + mail + ", password="
