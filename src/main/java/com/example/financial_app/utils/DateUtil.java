@@ -1,28 +1,22 @@
 package com.example.financial_app.utils;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class DateUtil {
 
-    public Date now(){
-        return this.convertToLocalDateTimeToDate(LocalDateTime.now());
+    private DateUtil() {
+        throw new AssertionError("DateUtil class should not be instantiated.");
     }
 
-    public Date applyTimeDifference(Date datetime, Long miliseconds){
-        long currentTime = datetime.getTime();
-        datetime.setTime(currentTime + miliseconds);
-
-        return datetime;
+    // Get the current date as a LocalDate object
+    public static LocalDate getCurrentDate() {
+        return LocalDate.now();
     }
 
-    private Date convertToLocalDateTimeToDate(LocalDateTime localDateTime) {
-        // Convert LocalDateTime to Date
-        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    // Format a LocalDate to a String using a specific format
+    public static String formatLocalDate(LocalDate date, String pattern) {
+        return date.format(DateTimeFormatter.ofPattern(pattern));
     }
-
 }
+
