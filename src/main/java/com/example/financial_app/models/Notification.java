@@ -13,10 +13,10 @@ public class Notification {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false)
+    @JoinColumn(name = "notification_type_id", nullable = false)
     private NotificationType type;
 
-    @ManyToMany(mappedBy = "notifications")
+    @ManyToMany(mappedBy = "notifications", fetch = FetchType.LAZY)
     private Set<User> users;
     
     private String name;
