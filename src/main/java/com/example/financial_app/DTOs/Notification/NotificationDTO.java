@@ -1,31 +1,21 @@
-package com.example.financial_app.DTOs;
-
-import com.example.financial_app.models.NotificationType;
+package com.example.financial_app.DTOs.Notification;
 
 public class NotificationDTO {
-    public Long id;
-    public NotificationType type;
+    public NotificationTypeDTO type;
     public String name;
     public String description;
 
     public NotificationDTO(){}
     
-    public NotificationDTO(Long id, NotificationType type, String name, String description) {
-        this.id = id;
+    public NotificationDTO(NotificationTypeDTO type, String name, String description) {
         this.type = type;
         this.name = name;
         this.description = description;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public NotificationType getType() {
+    public NotificationTypeDTO getType() {
         return type;
     }
-    public void setType(NotificationType type) {
+    public void setType(NotificationTypeDTO type) {
         this.type = type;
     }
     public String getName() {

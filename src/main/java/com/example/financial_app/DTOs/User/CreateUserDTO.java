@@ -2,16 +2,16 @@ package com.example.financial_app.DTOs.User;
 
 import java.util.List;
 
-public class CreateUserWithNotificationDTO {
+public class CreateUserDTO {
     private String name;
     private String surname;
     private String mail;
     private String password;
     List<Long> notificationIds;
 
-    public CreateUserWithNotificationDTO(){}
+    public CreateUserDTO(){}
     
-    public CreateUserWithNotificationDTO(String name, String surname, String mail, String password, List<Long> notificationIds) {
+    public CreateUserDTO(String name, String surname, String mail, String password, List<Long> notificationIds) {
         this.setName(name);
         this.setSurname(surname);
         this.setMail(mail);
