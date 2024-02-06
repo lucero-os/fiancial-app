@@ -7,7 +7,7 @@ SpringBoot 3.2.2,
 Postgres
 
 Requirements:
-Java 21.0.1,
+Java 17,
 Docker
 
 Setup:
