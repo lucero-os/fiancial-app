@@ -1,4 +1,5 @@
-Financial app: This application enables users to create accounts. Once registered, users can purchase subscriptions using a credit card through the Stripe payment gateway.
+# Financial app: 
+## This application enables users to create accounts. Once registered, users can purchase subscriptions using a credit card through the Stripe payment gateway.
 The objective of this project is to demonstrate how I would face the challenge rather than being of use.
 
 TechStack:
