@@ -14,6 +14,7 @@ Setup:
 For setting up DB, open command line, go to project root and run `make setup`.
 
 Missing:  
+JavaDoc documentation.  
 Data validation(emails, string lengths, etc).  
 Authentication and user password secure hashing (Both depend on SecurityConfig not implemented).  
 User interface.  
