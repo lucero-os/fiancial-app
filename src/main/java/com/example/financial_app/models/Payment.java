@@ -20,7 +20,7 @@ public class Payment {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_details_id")
-    private PaymentDetails paymentDetails;
+    private PaymentDetail paymentDetails;
 
     @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
@@ -28,7 +28,7 @@ public class Payment {
     public Payment(){}
     
     public Payment(Long userSubscriptionId, PaymentIntegration paymentIntegration,
-            PaymentDetails paymentDetails, LocalDate paymentDate) {
+            PaymentDetail paymentDetails, LocalDate paymentDate) {
         this.setUserSubscriptionId(userSubscriptionId);
         this.setPaymentIntegration(paymentIntegration);
         this.setPaymentDetails(paymentDetails);
@@ -55,11 +55,11 @@ public class Payment {
         this.paymentIntegration = paymentIntegration;
     }
 
-    public PaymentDetails getPaymentDetails() {
+    public PaymentDetail getPaymentDetails() {
         return paymentDetails;
     }
 
-    private void setPaymentDetails(PaymentDetails paymentDetails) {
+    private void setPaymentDetails(PaymentDetail paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
 

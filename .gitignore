@@ -34,4 +34,3 @@ build/
 
 ### DB data
 postgres_data/
-sql/

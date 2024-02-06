@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.financial_app.DTOs.Payment.PaymentDTO;
+import com.example.financial_app.DTOs.Payment.Stripe.StripePaymentDTO;
 import com.example.financial_app.DTOs.User.CreateUserDTO;
+import com.example.financial_app.DTOs.User.CreateUserSubscriptionDTO;
 import com.example.financial_app.DTOs.User.UserDTO;
 import com.example.financial_app.exceptions.CustomException;
 import com.example.financial_app.services.UserService;
@@ -65,5 +68,14 @@ public class UserController {
         response.put("message", "User deleted succesfully");
         
         return response;
+    }
+
+    @PostMapping("/subscribe")
+    public ResponseEntity<ResponseUtil.ApiResponse<Object>> newUserSubscription(CreateUserSubscriptionDTO userSubscriptionDTO) throws Exception{
+        Map<String, Object> data = new HashMap<>();
+
+        this.userService.newUserSubscription(userSubscriptionDTO);
+
+        return ResponseUtil.success(data);
     }
 }

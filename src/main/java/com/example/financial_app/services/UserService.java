@@ -6,18 +6,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.financial_app.DTOs.Notification.NotificationDTO;
+import com.example.financial_app.DTOs.Subscription.SubscriptionDTO;
 import com.example.financial_app.DTOs.User.CreateUserDTO;
+import com.example.financial_app.DTOs.User.CreateUserSubscriptionDTO;
 import com.example.financial_app.DTOs.User.UserDTO;
 import com.example.financial_app.exceptions.CustomException;
 import com.example.financial_app.models.Notification;
 import com.example.financial_app.models.User;
+import com.example.financial_app.models.UserSubscription;
 import com.example.financial_app.repositories.iUserRepository;
+import com.example.financial_app.repositories.iUserSubscriptionRepository;
+import com.example.financial_app.services.payment.PaymentService;
 import com.example.financial_app.utils.EntityGraphUtil;
-import com.example.financial_app.utils.ObjectMapper;
+import com.example.financial_app.utils.ObjectMapperUtil;
 
 import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -26,9 +31,11 @@ public class UserService {
     @Autowired
     private EntityManager entityManager;
     @Autowired
-    private ObjectMapper objectMapper;
+    private ObjectMapperUtil objectMapper;
     @Autowired
     private NotificationService notificationService;
+    @Autowired
+    private UserSubscriptionService userSubscriptionService;
 
     public void createUser(CreateUserDTO user) throws CustomException{
         Boolean userExists = this.userRepository.findByMail(user.getMail()) != null;
@@ -87,6 +94,14 @@ public class UserService {
         Optional<User> userOptional = this.userRepository.findById(userId);
         User user = userOptional.orElseThrow(() -> new CustomException("User not found"));
         this.userRepository.delete(user);
+    }
+
+    @Transactional
+    public void newUserSubscription(CreateUserSubscriptionDTO createUserSubscriptionDTO) throws Exception{
+        Long userSubscriptionId = this.userSubscriptionService.createUserSubscription(createUserSubscriptionDTO.getUserId(), createUserSubscriptionDTO.getSubscriptionId());
+
+        PaymentService paymentService = new PaymentService(this.objectMapper);
+        paymentService.generatePayment(createUserSubscriptionDTO.getCreatePaymentDTO(), userSubscriptionId);
     }
 
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "payment_details")
-public class PaymentDetails {
+public class PaymentDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,11 +17,11 @@ public class PaymentDetails {
     private String paymentExternalReference;
 
     @Column(name = "card_last_four_numbers")
-    private Integer cardLastFourNumbers;
+    private String cardLastFourNumbers;
 
-    public PaymentDetails(){} 
+    public PaymentDetail(){} 
     
-    public PaymentDetails(BigDecimal amount, String paymentExternalReference, Integer cardLastFourNumbers) {
+    public PaymentDetail(BigDecimal amount, String paymentExternalReference, String cardLastFourNumbers) {
         this.setAmount(amount);
         this.setPaymentExternalReference(paymentExternalReference);
         this.setCardLastFourNumbers(cardLastFourNumbers);
@@ -47,11 +47,11 @@ public class PaymentDetails {
         this.paymentExternalReference = paymentExternalReference;
     }
 
-    public Integer getCardLastFourNumbers() {
+    public String getCardLastFourNumbers() {
         return cardLastFourNumbers;
     }
 
-    private void setCardLastFourNumbers(Integer cardLastFourNumbers) {
+    private void setCardLastFourNumbers(String cardLastFourNumbers) {
         this.cardLastFourNumbers = cardLastFourNumbers;
     }
 

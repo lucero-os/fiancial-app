@@ -18,6 +18,8 @@ public class Subscription {
     @ManyToMany(mappedBy = "subscriptions", fetch = FetchType.LAZY)
     private Set<User> users;
 
+    public Subscription(){}
+
     public Subscription(Long id, Integer duration, BigDecimal price) {
         this.setDuration(duration);
         this.setPrice(price);

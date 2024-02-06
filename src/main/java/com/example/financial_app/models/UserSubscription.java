@@ -27,5 +27,47 @@ public class UserSubscription {
     @Column(name = "end_date", nullable = false)
     private Date endDate;
     
+    public UserSubscription(User user, Subscription subscription, Date startDate, Date endDate) {
+        this.setUser(user);
+        this.setSubscription(subscription);
+        this.setStartDate(startDate);
+        this.setEndDate(endDate);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    private void setUser(User user) {
+        this.user = user;
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
+    }
+
+    private void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    private void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    private void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 }
 
