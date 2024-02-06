@@ -3,11 +3,11 @@
 The objective of this project is to demonstrate how I would face the challenge rather than being of use.
 
 TechStack:
-SpringBoot 3.2.2
+SpringBoot 3.2.2,
 Postgres
 
 Requirements:
-Java 21.0.1
+Java 21.0.1,
 Docker
 
 Setup:
