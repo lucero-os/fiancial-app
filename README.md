@@ -14,6 +14,7 @@ Setup:
 For setting up DB, open command line, go to project root and run `make setup`.
 
 Missing:
+Data validation(emails, string lengths, etc)
 Authentication.
 User interface.
 Working payment module.
